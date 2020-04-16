@@ -1,3 +1,3 @@
-require('./index.css')
+require('./index.scss')
 
-console.log("hello webpack")
+console.log("hello webpack!!!")
