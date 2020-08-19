@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.js",
+    "startes6": "nodemon --exec babel-node src/index.js",
+    "webpack:debug": "node --inspect-brk ./node_modules/.bin/webpack --inline --progress"
   },
   "author": "",
   "license": "ISC",
@@ -13,10 +15,25 @@
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
     "koa-combine-routers": "^4.0.2",
+    "koa-compose": "^4.1.0",
     "koa-helmet": "^5.2.0",
     "koa-json": "^2.0.2",
     "koa-router": "^9.1.0",
     "koa-static": "^5.0.0",
+    "koa2-cors": "^2.0.6",
     "svg-captcha": "^1.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^2.5.0"
   }
 }

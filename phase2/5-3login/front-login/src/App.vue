@@ -34,6 +34,7 @@
           <label class="layui-form-label">验证码</label>
           <div class="layui-input-block">
             <input
+              style="float:left;"
               type="text"
               name="title"
               required
@@ -42,6 +43,7 @@
               autocomplete="off"
               class="layui-input"
             />
+            <div class="layui-form-mid svg" v-html="svg"></div>
           </div>
         </div>
         <div class="layui-form-item">
@@ -54,6 +56,29 @@
     </div>
   </div>
 </template>
+<script>
+import axios from "axios";
+export default {
+  name: "app",
+  data() {
+    return {
+      svg: "",
+    };
+  },
+  mounted() {
+    // 跨域的两种方法，一种是koa使用koa-cors，还有一种是在vue.config.js中给devserver设置代理
+    axios.get("http://localhost:3001/GetCaptcha").then((res) => {
+      // console.log(res);
+      if (res.status === 200) {
+        let obj = res.data;
+        if (obj.code === 200) {
+          this.svg = obj.msg;
+        }
+      }
+    });
+  },
+};
+</script>
 <style lang="scss" scoped>
 #app {
   background: #f2f2f2;
@@ -63,5 +88,9 @@
 }
 input {
   width: 190px;
+}
+.svg {
+  position: relative;
+  top: -15px;
 }
 </style>

@@ -1,0 +1,5 @@
+# 笔记
+
+调试 webpack
+
+"webpack:debug": "node --inspect-brk ./node_modules/.bin/webpack --inline --progress"
