@@ -11,17 +11,22 @@ const statics = require("koa-static");
 const koaBody = require("koa-body");
 const jsonutil = require("koa-json");
 const compose = require("koa-compose");
+const compress = require("koa-compress");
 const app = new koa();
+const isDevMode = process.env.NODE_ENV === "production" ? false : true;
 const middleware = compose([
   koaBody(),
   statics(path.join(__dirname, "../public")),
   cors(),
   jsonutil({
     pretty: false,
-    param: "pretty"
+    param: "pretty",
   }),
   helmet(),
 ]);
+if (!isDevMode) {
+  app.use(compress());
+}
 app.use(middleware);
 app.use(router());
 app.listen(3001);

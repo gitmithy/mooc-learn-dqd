@@ -10,7 +10,7 @@ class GetCaptcha {
             width: 150,
             // height: 50
         })
-        console.log(newCaptca)
+        // console.log(newCaptca)
         ctx.body = {
             code: 200,
             msg: newCaptca.data,

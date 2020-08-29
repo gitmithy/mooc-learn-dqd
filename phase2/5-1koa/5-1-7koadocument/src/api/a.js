@@ -1,11 +1,11 @@
-// function a(ctx) {
-//     ctx.body = {
-//         "message": "hello from abc"
-//     }
-// }
-// module.exports = {
-//     a
-// }
+function a(ctx) {
+    ctx.body = {
+        "message": "hello from abc"
+    }
+}
+module.exports = {
+    a
+}
 
 
 

@@ -1,38 +1,41 @@
-const path = require('path')
-const nodeExcternals = require('webpack-node-externals')
+const path = require("path");
+const utils = require("./utils")
+const nodeExcternals = require("webpack-node-externals");
+
 const {
     CleanWebpackPlugin
-} = require('clean-webpack-plugin')
-const webpack = require('webpack')
-debugger
+} = require("clean-webpack-plugin");
+const webpack = require("webpack");
+debugger;
 const webpackconfig = {
-    target: 'node',
-    mode: 'development',
+    target: "node",
+    // mode: "development",
     entry: {
-        server: path.join(__dirname, 'src/index.js')
+        server: path.join(utils.APP_PATH, "index.js"),
     },
     output: {
-        path: path.join(__dirname, './dist')
+        filename: '[name].bundle.js',
+        path: utils.DIST_PATH,
     },
-    devtool: 'eval-source-map',
     module: {
         rules: [{
             test: /\.(js|jsx)$/,
             use: {
-                loader: 'babel-loader'
+                loader: "babel-loader",
             },
-            exclude: [path.join(__dirname, '/node_modules')]
-        }]
+            exclude: [path.join(__dirname, "/node_modules")],
+        }, ],
     },
     externals: [nodeExcternals()],
     plugins: [
         new CleanWebpackPlugin(),
         new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: (process.env.NODE_ENV === 'production' ||
-                    process.env.NODE_ENV === 'prod')
-            }
-        })
+            "process.env": {
+                NODE_ENV: process.env.NODE_ENV === "production" ||
+                    process.env.NODE_ENV === "prod" ?
+                    "'production'" : "'development'",
+            },
+        }),
     ],
     node: {
         console: true,
@@ -42,8 +45,8 @@ const webpackconfig = {
         __filename: true,
         __dirname: true,
         setImmediate: true,
-        path: true
-    }
-}
-console.log(webpackconfig)
-module.exports = webpackconfig
+        path: true,
+    },
+};
+console.log(webpackconfig);
+module.exports = webpackconfig;
